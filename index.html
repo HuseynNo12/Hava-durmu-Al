@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Hava Platforması</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    background: url("https://upload.wikimedia.org/wikipedia/commons/6/6e/Azerbaijan_map.png") no-repeat center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+/* overlay */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    padding: 20px;
+    margin: 15px;
+    border-radius: 20px;
+    width: 220px;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+/* isti */
+.hot {
+    background: rgba(255, 80, 80, 0.7);
+}
+
+/* soyuq */
+.cold {
+    background: rgba(80, 150, 255, 0.7);
+}
+
+button {
+    padding: 12px 25px;
+    margin: 15px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌍 Azərbaycan Hava Platforması</h1>
+
+<div class="container">
+
+<div class="card" data-temp="17">
+<h2>Bakı</h2>
+<p>🌡️ 17°C</p>
+<p>🌙 12°C</p>
+</div>
+
+<div class="card" data-temp="23">
+<h2>Gəncə</h2>
+<p>🌡️ 23°C</p>
+<p>🌙 10°C</p>
+</div>
+
+<div class="card" data-temp="15">
+<h2>Sumqayıt</h2>
+<p>🌡️ 15°C</p>
+<p>🌙 9°C</p>
+</div>
+
+</div>
+
+<button onclick="mesaj()">Mesaj</button>
+<button onclick="rengYoxla()">Rəngi uyğunlaşdır</button>
+
+<script>
+function mesaj() {
+    alert("Hava platformasına xoş gəldin 😎");
+}
+
+function rengYoxla() {
+    let kartlar = document.querySelectorAll(".card");
+
+    kartlar.forEach(k => {
+        let temp = k.getAttribute("data-temp");
+
+        if (temp >= 20) {
+            k.classList.add("hot");
+            k.classList.remove("cold");
+        } else {
+            k.classList.add("cold");
+            k.classList.remove("hot");
+        }
+    });
+}
+</script>
+
+</body>
+</html>
